@@ -6,20 +6,21 @@ app.get('/', (req, res)=> {
     res.sendFile(__dirname + '/index.html');
 });
 
-
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
     console.log('a user connected');
 
-    socket.on('disconnect', function () {
+    socket.on('disconnect', ()=> {
         console.log('user disconnected');
     });
-    socket.on('chat', function (msg) {
-        console.log('message: ' + msg);
+    socket.on('chat', (msg)=> {
         io.sockets.emit('chat message', msg);
     });
+    socket.on('send img', (msg)=> {
+        io.sockets.emit('receive img', msg);
+    })
 });
 
 const port = (process.env.PORT || 3000);
 http.listen(port, ()=> {
-    console.log('listening'+port);
+    console.log('listening on ' + port);
 });
