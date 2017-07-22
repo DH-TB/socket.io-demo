@@ -3,7 +3,6 @@ let http = require('http').Server(app);
 let io = require('socket.io')(http);
 
 app.get('/', (req, res)=> {
-    // res.send("hello world");
     res.sendFile(__dirname + '/index.html');
 });
 
@@ -20,6 +19,7 @@ io.on('connection', function (socket) {
     });
 });
 
-http.listen(3000, ()=> {
-    console.log('listening 3000');
+const port = (process.env.PORT || 3000);
+http.listen(port, ()=> {
+    console.log('listening'+port);
 });
