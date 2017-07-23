@@ -16,7 +16,7 @@ router.post('/register',(req,res,next)=>{
             let user = new User({
                 username: username,
                 password: password,
-                image: '../public/img/people.png',
+                image: '../public/img/people.jpg',
                 state: false
             });
             return user.save();

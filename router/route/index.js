@@ -1,8 +1,23 @@
 let express = require('express');
-let app = express();
+let router = express.Router();
 
-app.use('/',require('./login'));
-app.use('/',require('./register'));
-app.use('/',require('./home'));
+let User = require('../app');
 
-module.exports = app;
+router.use('/', require('./login'));
+router.use('/', require('./register'));
+
+
+router.get('/home', (req, res)=> {
+    console.log(req.cookies.user);
+    User.findOne({
+        username: req.cookies.user
+    }).then((userInfo)=> {
+        res.render('home', {
+            username: userInfo.username,
+            image: userInfo.image
+        });
+    });
+});
+
+
+module.exports = router;

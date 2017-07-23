@@ -10,7 +10,10 @@
         let socket = io();
 
         function sendMessage() {
-            socket.emit('chat', $('#m').val());
+            let username = $('#username').text();
+            let message = $('#m').val();
+            let img = $('#userImg').attr('src');
+            socket.emit('chat', {img, username, message});
             $('#m').val('');
         }
         function changeFiles(e) {
@@ -27,36 +30,45 @@
             }
         }
         socket.on('chat message', function (msg) {
-            $('#messages').append($('<li>').text(msg));
+            let html = '<li>';
+            html += msg.message+'<img src="' + msg.img + '">'+'</li>';
+            $('#messages').append(html);
         });
+
         socket.on('receive img', (msg)=> {
             let html = '<img src="' + msg + '">';
             $('#messages').append($('<li>').html(html));
         });
-        /*$(function () {
-         $('#addImage').on('click', function (e) {
-         let e = e || window.event;
-         e.stopPropagation();
-         $('#files').trigger('click');
-         });
-         });*/
+
     </script>
 </head>
+
 <body>
-
-<div class="panel panel-default col-md-8 col-md-offset-4">
-    <div class="panel-heading">
-        聊天内容
-    </div>
-    <div class="panel-body">
-        <ul id="messages"></ul>
-
-        <div class="input-group" id="input">
-            <input type="file" accept="image/*" id="files" class="form-control" onchange="changeFiles(event)">
-            <input id="m" class="form-control"/>
-            <button class="btn btn-success" onclick="sendMessage()">Send</button>
+<div class="container-fluid">
+<div class="row">
+    <div class="panel panel-primary col-md-4">
+        <div class="panel-heading">
+            个人信息
+        </div>
+        <div class="panel-body">
+            <img src="{{image}}" alt="" id="userImg">
+            <span id="username">{{username}}</span>
         </div>
     </div>
+    <div class="panel panel-default col-md-8">
+        <div class="panel-heading">
+            聊天内容
+        </div>
+        <div class="panel-body">
+            <ul id="messages"></ul>
+            <div class="input-group" id="input">
+                <input type="file" accept="image/*" id="files" class="form-control" onchange="changeFiles(event)">
+                <input id="m" class="form-control"/>
+                <button class="btn btn-success" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 </body>
 </html>

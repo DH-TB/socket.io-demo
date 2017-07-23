@@ -21,10 +21,12 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
     "http": "0.0.0",
     "mongoose": "^4.10.4",
     "nodemon": "^1.11.0",
-    "socket.io": "^2.0.2"
+    "socket.io": "^2.0.2",
+    "swig": "^1.4.2"
   }
 }
