@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./lib/jquery-1.11.2.min.js"></script>
+    <script>
+        function Login() {
+            var username = $('#username').val();
+            var password = $('#password').val();
+            if (username == '') {
+                alert('请填写用户名!');
+                return false;
+            }
+            var reg = /^[a-z0-9_-]{6,18}$/;
+            if (!reg.test(password)) {
+                alert('请填6-12位写密码！');
+                return false;
+            }
+            $.post('/login', {username: username, password: password}, function (res) {
+                if (res.success == 1) {
+                    location.href = 'home';
+                } else {
+                    alert(res.err);
+                }
+            }, 'json');
+        }
+    </script>
+</head>
+<body>
+用户名：<input type="text" id="username">
+密码：<input type="password" id="password">
+<button id="login" onclick="Login()">登录</button>
+</body>
+
+
+
+
+</html>
