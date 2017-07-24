@@ -11,10 +11,12 @@ body{
 .container-fluid{
     height: 100%;
 }
-.right{
+.panel{
     height: 100%;
 }
+.panel-heading{
 
+}
 #username{
     font-size: xx-large;
 }
@@ -23,9 +25,6 @@ body{
     position: absolute;
 }
 
-#li{
-    right: 0;
-}
 #sendMessage{
     background: rosybrown;
     padding: 1%;

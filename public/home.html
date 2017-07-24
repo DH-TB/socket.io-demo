@@ -10,8 +10,7 @@
 <body>
 
 <div class="container-fluid">
-    <!--<img src="../img/people.jpg" alt=""/>-->
-    <div class="panel panel-primary col-md-4">
+    <div class="panel panel-info col-md-3">
         <div class="panel-heading">
             个人信息
         </div>
@@ -19,9 +18,14 @@
             <img src="{{image}}" alt="" id="userImg" class="img-circle">
             <span id="username">{{username}}</span>
             <button id="exit" onclick="exit()" class="btn btn-info">退出</button>
+            <div>
+                <span id="userCount"></span>
+                <ul id="userList">
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="panel panel-default col-md-8 right">
+    <div class="panel panel-success col-md-9">
         <div class="panel-heading">
             聊天内容
         </div>

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="./lib/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
     <script>
         function Login() {
             var username = $('#username').val();
@@ -28,12 +31,16 @@
     </script>
 </head>
 <body>
-用户名：<input type="text" id="username">
-密码：<input type="password" id="password">
-<button id="login" onclick="Login()">登录</button>
+<div class="index">
+    <div>
+        <input type="text" id="username" class="Input" placeholder="请输入用户名"/>
+    </div>
+    <div>
+        <input type="password" id="password" class="Input" placeholder="请输入密码"/>
+    </div>
+    <button id="login" class="Button" onclick="Login()">登录</button>
+</div>
 </body>
-
-
 
 
 </html>

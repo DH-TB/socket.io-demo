@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="./lib/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" href="./css/login.css">
     <script>
         function Register() {
             var username = $('#username').val();
@@ -35,11 +36,17 @@
     </script>
 </head>
 <body>
-<div>
-    用户名<input type="text" id="username"/>
-    密码 <input type="password" id="password"/>
-    重复密码 <input type="password" id="rePassword"/>
-    <button id="register" onclick="Register()">注册</button>
+<div class="index">
+    <div>
+        <input type="text" id="username" class="Input" placeholder="请输入用户名"/>
+    </div>
+    <div>
+        <input type="password" id="password" class="Input" placeholder="请输入密码"/>
+    </div>
+    <div>
+        <input type="password" id="rePassword" class="Input" placeholder="请输入重复密码"/>
+    </div>
+    <button id="register" class="Button" onclick="Register()">注册</button>
 </div>
 </body>
 </html>

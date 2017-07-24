@@ -1,15 +1,24 @@
 let socket = io();
 let username;
 let img;
-
 $(document).ready(function () {
     username = $('#username').text();
     img = $('#userImg').attr("src");
 
     socket.emit('login', username);
     socket.on('add user', (msg)=> {
-        $('#loggedUser').html('@ ' + msg + ' @上线');
+        $('#loggedUser').append('@ ' + msg + ' @上线');
     });
+    socket.on('user list',(data)=>{
+        $('#userCount').html('当前在线人数' + data.length);
+        let user = data.map((ele)=>{
+            let user = '<li id="li">';
+            user += '<span id="sendUserName">' + ele.username + '</span>';
+            user += '<img src="' + ele.image + '" id = "sendImg" class = "img-rounded">'+'</li>';
+            return user;
+        });
+        $('#userList').append(user);
+    })
 });
 
 function sendMessage() {
@@ -37,7 +46,7 @@ function exit() {
 
 
 socket.on('delete user', (msg)=> {
-    $('#loggedUser').html('@ ' + msg + ' @下线');
+    $('#loggedUser').append('@ ' + msg + ' @下线');
 });
 
 

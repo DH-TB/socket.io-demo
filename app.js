@@ -39,6 +39,10 @@ io.on('connection', (socket) => {
         io.sockets.emit('receive img', msg);
     });
     socket.on('login',(msg)=>{
+        User.find((err,result)=>{
+            let data = result.filter((ele)=>ele.state);
+            io.sockets.emit('user list',data);
+        });
         io.sockets.emit('add user',msg);
     });
     socket.on('discount',(msg)=>{
