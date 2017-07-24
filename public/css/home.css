@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+   height: 100%;
+}
+body{
+    height: 100%;
+}
+.container-fluid{
+    height: 100%;
+}
+.right{
+    height: 100%;
+}
+
+#username{
+    font-size: xx-large;
+}
+#input{
+    bottom: 0;
+    position: absolute;
+}
+
+#li{
+    right: 0;
+}
+#sendMessage{
+    background: rosybrown;
+    padding: 1%;
+    color: white;
+    border-radius: 4px;
+}
+#sendImg{
+    height: 45px;
+    width: 45px;
+}
+#sendUserName{
+    color: #4F4D3F;
+    font-size: smaller;
+}

@@ -38,6 +38,12 @@ io.on('connection', (socket) => {
     socket.on('send img', (msg)=> {
         io.sockets.emit('receive img', msg);
     });
+    socket.on('login',(msg)=>{
+        io.sockets.emit('add user',msg);
+    });
+    socket.on('discount',(msg)=>{
+        io.sockets.emit('delete user',msg);
+    });
 });
 
 http.listen(process.env.PORT ||3000,()=>{

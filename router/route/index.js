@@ -8,7 +8,6 @@ router.use('/', require('./register'));
 
 
 router.get('/home', (req, res)=> {
-    console.log(req.cookies.user);
     User.findOne({
         username: req.cookies.user
     }).then((userInfo)=> {
@@ -19,5 +18,16 @@ router.get('/home', (req, res)=> {
     });
 });
 
+router.get('/exit', function (req, res) {
+    User.update({
+        username: req.cookies.user
+    }, {
+        state: false
+    }).then(function () {
+        res.clearCookie('user');
+        res.clearCookie('flag');
+        res.redirect('/login');
+    });
+});
 
 module.exports = router;

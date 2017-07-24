@@ -1,74 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title>Title</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
-    <script>
-        let socket = io();
-
-        function sendMessage() {
-            let username = $('#username').text();
-            let message = $('#m').val();
-            let img = $('#userImg').attr('src');
-            socket.emit('chat', {img, username, message});
-            $('#m').val('');
-        }
-        function changeFiles(e) {
-            var e = e || window.event;
-            var files = e.target.files || e.dataTransfer.files;
-            var len = files.length;
-            if (len === 0) return false;
-            for (var i = 0; i < len; i++) {
-                var fs = new FileReader();
-                fs.readAsDataURL(files[i]);
-                fs.onload = function () {
-                    socket.emit('send img', this.result);
-                }
-            }
-        }
-        socket.on('chat message', function (msg) {
-            let html = '<li>';
-            html += msg.message+'<img src="' + msg.img + '">'+'</li>';
-            $('#messages').append(html);
-        });
-
-        socket.on('receive img', (msg)=> {
-            let html = '<img src="' + msg + '">';
-            $('#messages').append($('<li>').html(html));
-        });
-
-    </script>
+    <link rel="stylesheet" href="./css/home.css">
 </head>
 
 <body>
+
 <div class="container-fluid">
-<div class="row">
+    <!--<img src="../img/people.jpg" alt=""/>-->
     <div class="panel panel-primary col-md-4">
         <div class="panel-heading">
             个人信息
         </div>
         <div class="panel-body">
-            <img src="{{image}}" alt="" id="userImg">
+            <img src="{{image}}" alt="" id="userImg" class="img-circle">
             <span id="username">{{username}}</span>
+            <button id="exit" onclick="exit()" class="btn btn-info">退出</button>
         </div>
     </div>
-    <div class="panel panel-default col-md-8">
+    <div class="panel panel-default col-md-8 right">
         <div class="panel-heading">
             聊天内容
         </div>
         <div class="panel-body">
+            <span id="loggedUser"></span>
             <ul id="messages"></ul>
-            <div class="input-group" id="input">
+            <div id="input">
                 <input type="file" accept="image/*" id="files" class="form-control" onchange="changeFiles(event)">
-                <input id="m" class="form-control"/>
+                <textarea rows="6" id="message" cols="60" class="form-control" placeholder="#写下你的评论..."></textarea>
                 <button class="btn btn-success" onclick="sendMessage()">Send</button>
             </div>
         </div>
     </div>
 </div>
-</div>
+
+<script src="./lib/jquery-1.11.2.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./src/home.js"></script>
+
 </body>
 </html>
