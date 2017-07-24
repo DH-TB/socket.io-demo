@@ -14,9 +14,7 @@ body{
 .panel{
     height: 100%;
 }
-.panel-heading{
 
-}
 #username{
     font-size: xx-large;
 }
@@ -24,7 +22,10 @@ body{
     bottom: 0;
     position: absolute;
 }
-
+#loggedUser{
+    text-align: center;
+    color: rosybrown;
+}
 #sendMessage{
     background: rosybrown;
     padding: 1%;

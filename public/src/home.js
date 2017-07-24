@@ -17,7 +17,7 @@ $(document).ready(function () {
             user += '<img src="' + ele.image + '" id = "sendImg" class = "img-rounded">'+'</li>';
             return user;
         });
-        $('#userList').append(user);
+        $('#userList').html(user);
     })
 });
 
