@@ -33,20 +33,20 @@ io.on('connection', (socket) => {
         console.log('user disconnected');
     });
     socket.on('chat', (msg)=> {
-        socket.broadcast.emit('chat message', msg);
+        io.sockets.emit('chat message', msg);
     });
     socket.on('send img', (msg)=> {
-        socket.broadcast.emit('receive img', msg);
+        io.sockets.emit('receive img', msg);
     });
     socket.on('login',(msg)=>{
         User.find((err,result)=>{
             let data = result.filter((ele)=>ele.state);
-            socket.broadcast.emit('user list',data);
+            io.sockets.emit('user list',data);
         });
-        socket.broadcast.emit('add user',msg);
+        io.sockets.emit('add user',msg);
     });
     socket.on('discount',(msg)=>{
-        socket.broadcast.emit('delete user',msg);
+        io.sockets.emit('delete user',msg);
     });
 });
 
